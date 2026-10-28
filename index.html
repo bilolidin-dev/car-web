@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Korean cars export, used cars Korea, car export to Central Asia, cars from Daegu, Korea vehicle exporter, koreamotors.export">
+    <meta name="description" content="korea.auto.export helps you order any car or special equipment from Korea for delivery worldwide. Contact us on Telegram or WhatsApp.">
+    <meta name="author" content="koreamotors.export">
+    <meta property="og:title" content="koreamotors.export | Korean Car Export">
+    <meta property="og:description" content="Quality Korean vehicles sourced in Daegu and exported across Central Asia.">
+
+    <title>koreamotors.export</title>
+    <link rel="icon" href="https://img.icons8.com/plasticine/100/car--v1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbarx" id="navbarx">
+        <div class="nav-container">
+            <div class="logo"><a href="#home">koreamotors.export<span class="text-primary"></span></a></div>
+            <div class="nav-actions">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                    <li><a href="#gallery" data-i18n="nav.cars">Cars</a></li>
+                </ul>
+                <button class="lang-toggle" id="langToggle" aria-label="Switch language">RU</button>
+                <button class="currency-toggle" id="currencyToggle" type="button" aria-label="Switch currency">USD</button>
+                <a class="admin-toggle" href="/admin/" aria-label="Открыть админ-панель"><i class="fas fa-gear" aria-hidden="true"></i><span>Админ-панель</span></a>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="hero-greeting" data-i18n="hero.greeting">korea.auto.export ⚡ · Ассаламу Алейкум 🤝</p>
+            <h1 data-i18n="hero.title">Your Next Ride, Just a Click Away</h1>
+            <p data-i18n="hero.subtitle">Order any car or special equipment from Korea for delivery worldwide.</p>
+            <div class="hero-actions">
+                <a href="#gallery" class="cta-button" data-i18n="hero.cta">Explore Cars</a>
+                <a href="tel:+821056569626" class="contact-button"><i class="fas fa-phone" aria-hidden="true"></i><span data-i18n="contact.koreaPhone">Korea: +82 10-5656-9626</span></a>
+                <a href="https://wa.me/821056569626" class="contact-button" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i><span data-i18n="contact.whatsapp">WhatsApp: +82 10-5656-9626</span></a>
+                <a href="https://t.me/+C_CVCZLPf185NjYy" class="contact-button" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram" aria-hidden="true"></i><span data-i18n="contact.telegram">Telegram channel</span></a>
+                <a href="https://www.instagram.com/koreamotors.export/" class="contact-button" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title" data-i18n="gallery.title">Our Collection</h2>
+        <p class="section-subtitle" data-i18n="gallery.subtitle">Handpicked vehicles for the discerning buyer</p>
+
+        <div class="car-grid" id="carGrid">
+            <!-- Cars will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer pt-5">
+        <div class="container footer-content">
+            <div class="row g-4 mb-5">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="#home" class="footer-logo d-block mb-4">
+                        koreamotors.export<span class="text-primary"></span>
+                    </a>
+                    <p class="text-muted mb-4" data-i18n="footer.about">koreamotors.export sources quality Korean vehicles in Daegu and arranges exports across Central Asia.</p>
+                    <ul class="contact-info mb-4">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="span">Daegu, South Korea</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span class="span"><a href="tel:+821056569626" style="color: inherit; text-decoration: none;">+82 10-5656-9626 (Korea)</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <span class="span"><a href="https://wa.me/821056569626" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">WhatsApp: +82 10-5656-9626</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-telegram"></i>
+                            <span class="span"><a href="https://t.me/+C_CVCZLPf185NjYy" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;" data-i18n="contact.telegram">Telegram</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-instagram"></i>
+                            <span class="span"><a href="https://www.instagram.com/koreamotors.export/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">@koreamotors.export</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-4 col-md-6">
+                    <h3 class="footer-title" data-i18n="footer.quickLinksTitle">Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#gallery" data-i18n="footer.browseCars">Browse Cars</a></li>
+                        <li><a href="https://t.me/+C_CVCZLPf185NjYy" target="_blank" rel="noopener noreferrer" data-i18n="footer.sellCar">Join our Telegram channel</a></li>
+                        <li><a href="#home" data-i18n="footer.aboutBrand">About koreamotors.export</a></li>
+                        <li><a href="tel:+821056569626" data-i18n="footer.call">Call +82 10-5656-9626</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row py-4">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p data-i18n="footer.copyright">&copy; 2026 koreamotors.export. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end text-center">
+                        <p><a class="developer-credit-link" href="https://www.bilolidin.dev/" rel="noopener noreferrer"><span data-i18n="footer.madeBy">Designed and built by</span> bilolidin.dev</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="bottom-nav" aria-label="Быстрая навигация">
+        <a href="#home" class="bottom-nav-item is-active" aria-current="page">
+            <i class="fas fa-house" aria-hidden="true"></i>
+            <span data-i18n="bottom.home">Главная</span>
+        </a>
+        <a href="#gallery" class="bottom-nav-item">
+            <i class="fas fa-car-side" aria-hidden="true"></i>
+            <span data-i18n="bottom.cars">Авто</span>
+        </a>
+        <a href="tel:+821056569626" class="bottom-nav-item">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <span data-i18n="bottom.call">Звонок</span>
+        </a>
+        <a href="https://wa.me/821056569626" class="bottom-nav-item" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="https://t.me/+C_CVCZLPf185NjYy" class="bottom-nav-item" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-telegram" aria-hidden="true"></i>
+            <span data-i18n="bottom.telegram">Telegram</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
