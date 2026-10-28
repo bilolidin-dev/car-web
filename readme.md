@@ -1,41 +1,32 @@
-# koreamotors.export
+# Website Project
 
-A lightweight bilingual landing page for a Korean vehicle export business based in Daegu, South Korea, serving customers across Central Asia.
+A static website built with HTML, CSS, and JavaScript. No build process or package installation is required.
 
 ## Run locally
 
-No build step or package installation is required. From the project directory, run:
+From the project directory, start a local server:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Open <http://localhost:8000> in a browser. The page uses Bootstrap and Font Awesome from CDNs, so those assets require an internet connection.
+Open <http://localhost:8000> in your browser. The page loads some visual assets from external CDNs, so an internet connection is needed for those assets.
 
-The temporary admin page is available at <http://localhost:8000/admin/>.
+The optional demo administration page is available at `/admin/`.
 
-## Project files
+## Project structure
 
-- `index.html` contains the page structure, search metadata, contact details, and external stylesheet/script references.
-- `style.css` contains layout, theme, and responsive styles.
-- `script.js` contains English/Russian translations, gallery rendering, theme and currency controls.
+- `index.html` — public page markup.
+- `style.css` — public page styles and responsive layouts.
+- `script.js` — language and currency controls, catalog rendering, and public-page interactions.
+- `admin/index.html` — demo administration page markup.
+- `admin/admin.css` — administration page styles.
+- `admin/admin.js` — demo sign-in and catalog editing.
 
-## Inventory
+## Demo catalog
 
-Sign in at `/admin/` with the demo credentials configured in `admin/admin.js`, then add, edit, or delete vehicles. Entries are saved in this browser's `localStorage` and remain after reloading the page. Enter vehicle prices in USD; the page formats them in USD or Kyrgyz som (KGS).
+The administration page can add, edit, or delete catalog entries. In this demo, catalog data is saved in the current browser's `localStorage`; it is not synchronized to other devices or browsers. Clearing browser site data removes the saved entries.
 
-The login is only a demo gate: credentials are in public JavaScript and can be bypassed. This is not real security. Data is not shared with other browsers/devices, and clearing this browser's site data removes the inventory. Do not use this admin page on a public production deployment. Firebase Authentication and database access rules should replace it when the client project is available.
+The demo sign-in is not real security: its check runs in public JavaScript and can be bypassed. Do not rely on it for a public production deployment. A server-backed authentication system and database access rules are required for real protection and shared data.
 
-The conversion rate is configured by `USD_TO_KGS_RATE` in `script.js`. It is a manually maintained rate, not a live exchange-rate feed; update it before relying on converted prices commercially.
-
-## Contact details
-
-- Phone and WhatsApp: +82 10-5656-9626
-- Telegram channel: <https://t.me/+C_CVCZLPf185NjYy>
-- Instagram: <https://www.instagram.com/koreamotors.export/>
-- Location: Daegu, South Korea
-- Export region: worldwide
-
-## Publish
-
-This is a static site and can be deployed to any static web host, such as GitHub Pages, Netlify, or Cloudflare Pages. Check that the CDN assets load and that the contact links are correct on the deployed domain.
+Prices are entered in USD and can be displayed in USD or KGS. The KGS conversion rate is manually configured in `script.js` and is not fetched live.
