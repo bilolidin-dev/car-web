@@ -1,6 +1,8 @@
+import { collection, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+import { db } from './firebase-config.js';
+
 // Car data
-const INVENTORY_STORAGE_KEY = 'koreamotors.inventory.v1';
-let cars = loadCars();
+let cars = [];
 const USD_TO_KGS_RATE = 87.5;
 
 const translations = {
@@ -158,27 +160,6 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const modal = document.getElementById('carModal');
 const closeModal = document.getElementById('closeModal');
 let activeFilter = 'all';
-
-function loadCars() {
-    try {
-        const storedCars = JSON.parse(localStorage.getItem(INVENTORY_STORAGE_KEY) || '[]');
-        if (!Array.isArray(storedCars)) return [];
-        return storedCars.filter(car => car && typeof car === 'object' && typeof car.name === 'string')
-            .map((car, index) => ({
-                id: String(car.id || `vehicle-${index}`),
-                brand: String(car.brand || '').toLowerCase(),
-                name: String(car.name),
-                year: Number(car.year) || '',
-                price: Number(car.price) || 0,
-                image: String(car.image || ''),
-                mileage: String(car.mileage || ''),
-                description: String(car.description || ''),
-                descriptionRu: String(car.descriptionRu || '')
-            }));
-    } catch (error) {
-        return [];
-    }
-}
 
 function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, character => ({
@@ -438,6 +419,27 @@ const observer = new IntersectionObserver((entries) => {
 document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(getCurrentLanguage());
     renderCars(getFilteredCars());
+    onSnapshot(collection(db, 'cars'), snapshot => {
+        cars = snapshot.docs.map(document => {
+            const car = document.data();
+            return {
+                id: document.id,
+                brand: String(car.brand || '').toLowerCase(),
+                name: String(car.name || ''),
+                year: Number(car.year) || '',
+                price: Number(car.price) || 0,
+                image: String(car.image || car.images?.[0] || ''),
+                mileage: String(car.mileage || ''),
+                description: String(car.description || ''),
+                descriptionRu: String(car.descriptionRu || '')
+            };
+        });
+        renderCars(getFilteredCars());
+    }, error => {
+        console.error('Could not load vehicle catalog from Firestore:', error);
+        cars = [];
+        renderCars(getFilteredCars());
+    });
     document.querySelectorAll('.section-title, .section-subtitle').forEach(el => {
         observer.observe(el);
     });

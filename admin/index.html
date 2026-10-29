@@ -21,8 +21,8 @@
             <h1 id="loginTitle">Вход в панель</h1>
             <p class="intro">Управление каталогом автомобилей</p>
             <form class="login-form" id="loginForm">
-                <label for="username">Логин</label>
-                <input id="username" name="username" type="text" autocomplete="username" required>
+                <label for="username">Email администратора</label>
+                <input id="username" name="username" type="email" autocomplete="username" required>
                 <label for="password">Пароль</label>
                 <div class="password-wrap">
                     <input id="password" name="password" type="password" autocomplete="current-password" required>
@@ -31,7 +31,7 @@
                 <button class="primary-button login-submit" type="submit">Войти <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 <p class="form-message" id="loginMessage" role="alert" aria-live="polite"></p>
             </form>
-            <p class="security-note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Демо-вход без настоящей защиты. Не используйте для публичного сайта.</p>
+            <p class="security-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Доступ разрешён только подтверждённым администраторам Firebase.</p>
         </section>
 
         <section class="dashboard" id="dashboard" hidden>
@@ -69,8 +69,9 @@
                         <label class="field" for="carMileage">Пробег
                             <input id="carMileage" name="mileage" type="text" maxlength="50" placeholder="35 000 км">
                         </label>
-                        <label class="field full-field" for="carImage">Ссылка на фотографию
-                            <input id="carImage" name="image" type="url" placeholder="https://example.com/car.jpg">
+                        <label class="field full-field" for="carImages">Фотографии автомобиля
+                            <input id="carImages" name="images" type="file" accept="image/*" multiple>
+                            <img id="imagePreview" class="image-preview" alt="Предпросмотр фотографии" hidden>
                         </label>
                         <label class="field full-field" for="carDescription">Описание
                             <textarea id="carDescription" name="description" rows="4" maxlength="1000" placeholder="Состояние, комплектация, особенности"></textarea>
@@ -94,9 +95,9 @@
                 </section>
             </div>
 
-            <p class="storage-notice"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Данные сохраняются только в этом браузере. Вход демонстрационный, без Firebase и серверной проверки.</p>
+            <p class="storage-notice"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Каталог сохраняется в Firestore. Фотографии загружаются в Cloudinary.</p>
         </section>
     </main>
-    <script src="/admin/admin.js"></script>
+    <script type="module" src="/admin/admin.js"></script>
 </body>
 </html>
