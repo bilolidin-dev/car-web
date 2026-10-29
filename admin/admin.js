@@ -38,6 +38,19 @@ function showDashboard() {
     dashboard.hidden = false;
 }
 
+async function refreshUserSession() {
+    const user = auth.currentUser;
+    if (!user) return null;
+
+    try {
+        await user.reload();
+        return auth.currentUser;
+    } catch (error) {
+        console.warn('Could not refresh auth user session:', error);
+        return auth.currentUser;
+    }
+}
+
 function formatPrice(priceUsd) {
     const currency = localStorage.getItem('currency') === 'KGS' ? 'KGS' : 'USD';
     const amount = currency === 'KGS' ? priceUsd * USD_TO_KGS_RATE : priceUsd;
@@ -109,14 +122,17 @@ async function loadCars() {
 }
 
 async function verifyAdmin(user) {
-    if (!user.emailVerified) {
-        loginMessage.textContent = 'Сначала подтвердите email администратора через Firebase.';
+    const refreshedUser = await refreshUserSession();
+    const currentUser = refreshedUser || user;
+
+    if (!currentUser?.emailVerified) {
+        loginMessage.textContent = 'Сначала подтвердите email администратора через Firebase. После подтверждения выйдите и войдите в аккаунт снова.';
         await signOut(auth);
         return;
     }
 
     try {
-        const adminDocument = await getDoc(doc(db, 'admins', user.uid));
+        const adminDocument = await getDoc(doc(db, 'admins', currentUser.uid));
         if (!adminDocument.exists()) {
             loginMessage.textContent = 'У этой учётной записи нет доступа администратора.';
             await signOut(auth);
@@ -287,9 +303,9 @@ carList.addEventListener('click', async event => {
     }
 });
 
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(auth, async user => {
     if (user) {
-        verifyAdmin(user);
+        await verifyAdmin(user);
     } else {
         showLogin();
     }
