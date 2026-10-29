@@ -6,6 +6,8 @@ service cloud.firestore {
     function isVerifiedAdmin() {
       return request.auth != null
         && request.auth.token.email_verified == true
+        && request.auth.uid == 'MXau66jCKph659qn6YHFTSJo4Ek2'
+        && request.auth.token.email == 'biloldin111fifa@gmail.com'
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
