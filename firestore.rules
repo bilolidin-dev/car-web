@@ -1,19 +1,21 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    
+    // Функция проверки прав администратора
     function isVerifiedAdmin() {
       return request.auth != null
         && request.auth.token.email_verified == true
-        && request.auth.uid == 'uBv4FEsvuRVoRDVrzrL9w19o27L2'
-        && request.auth.token.email == 'biloldin111fifa@gmail.com'
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
+    // Каталог автомобилей: публичное чтение, запись только админу
     match /cars/{carId} {
       allow read: if true;
       allow create, update, delete: if isVerifiedAdmin();
     }
 
+    // Разрешаем админу читать только собственный документ для проверки в клиенте
     match /admins/{userId} {
       allow get: if request.auth != null
         && request.auth.uid == userId
